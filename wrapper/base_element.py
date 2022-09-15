@@ -1,7 +1,7 @@
-from selenium.webdriver import Chrome, Firefox, ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver import Chrome, Firefox, ActionChains
 
 
 class BaseElement:
