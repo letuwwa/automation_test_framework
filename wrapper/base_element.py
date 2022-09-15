@@ -1,4 +1,4 @@
-from selenium.webdriver import Chrome, Firefox
+from selenium.webdriver import Chrome, Firefox, ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.remote.webelement import WebElement
@@ -11,6 +11,17 @@ class BaseElement:
 
     def click_on(self, locator: tuple) -> None:
         self._find_element(locator=locator).click()
+
+    def get_text_from(self, locator: tuple) -> str:
+        return self._find_element(locator=locator).text
+
+    def write_text_to(self, locator: tuple, text: str) -> None:
+        self._find_element(locator=locator).send_keys(text)
+
+    def move_cursor_to(self, locator: tuple) -> None:
+        ActionChains(self.driver).move_to_element(
+            to_element=self._find_element(locator=locator)
+        ).perform()
 
     def _find_element(self, locator: tuple) -> WebElement:
         return self._driver_wait.until(
